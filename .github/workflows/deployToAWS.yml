@@ -50,7 +50,7 @@ jobs:
         with:
           push: true
           #Set dockerhub project (replace "sergejneuefische/javafx-student-db")
-          tags: oxygen/javafx-student-db:latest
+          tags: oxygen/freshventory:latest
           context: ./backend
 
   deploy:
