@@ -1,4 +1,4 @@
-package de.iav.frontend;
+package de.iav.frontend.mainpage;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -11,10 +11,10 @@ import java.io.IOException;
 public class MainPageApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(MainPageApplication.class.getResource("/de/iav/frontend/fxml/hello-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(MainPageApplication.class.getResource("/de/iav/frontend/fxml/main-page.fxml"));
 
         Scene scene = new Scene(fxmlLoader.load(), 320, 240);
-        stage.setTitle("FreshVentory");
+        stage.setTitle("Overview of your food inventory");
         stage.setScene(scene);
         stage.show();
     }

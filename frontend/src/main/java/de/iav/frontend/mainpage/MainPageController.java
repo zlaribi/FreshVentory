@@ -1,4 +1,4 @@
-package de.iav.frontend;
+package de.iav.frontend.mainpage;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

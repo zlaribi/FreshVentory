@@ -1,0 +1,26 @@
+/* Default styles for all screen sizes */
+.label {
+    -fx-font-size: 14px;
+}
+
+.text-field,
+.password-field {
+    -fx-pref-width: 200px;
+}
+
+.button {
+    -fx-pref-width: 100px;
+    -fx-pref-height: 34px;
+}
+
+/* Styles for smaller screen sizes */
+@media screen and (max-width: 480px) {
+    .label {
+        -fx-font-size: 12px;
+    }
+
+    .text-field,
+    .password-field {
+        -fx-pref-width: 150px;
+    }
+}
