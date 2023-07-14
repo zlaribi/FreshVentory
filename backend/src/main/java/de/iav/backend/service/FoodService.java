@@ -31,8 +31,11 @@ public class FoodService {
         foodRepository.deleteById(foodId);
     }
     public Food updateFoodById(String id, Food foodToUpdate){
-        foodRepository.findById(id).orElseThrow(()-> new NoSuchElementException(id));
-        return foodRepository.save(foodToUpdate);
+        Optional<Food> existingFood = foodRepository.findById(id);
+        if (existingFood.isPresent()) {
+            return foodRepository.save(foodToUpdate);
+        }
+        throw new NoSuchElementException("Element with ID: " + id + " not found!");
 
     }
 
