@@ -17,11 +17,11 @@ public class MainPageController {
     private Stage stage;
 
 
-  //  @FXML
+    //  @FXML
     //private Label welcomeText;
 
     @FXML
-    public void addFoodButtonClick  (ActionEvent event) throws IOException {
+    public void addFoodButtonClick(ActionEvent event) throws IOException {
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("addFood-page.fxml"));
         root = loader.load();
@@ -32,8 +32,8 @@ public class MainPageController {
         stage.show();
     }
 
-@FXML
-    public void checkDateClick  (ActionEvent event) throws IOException {
+    @FXML
+    public void checkDateClick(ActionEvent event) throws IOException {
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("ConsumeBeforeController-page.fxml"));
         root = loader.load();
@@ -46,22 +46,22 @@ public class MainPageController {
 
 
     @FXML
-    public void deleteFoodById  (ActionEvent event) throws IOException {
+    public void deleteFoodById(ActionEvent event) throws IOException {
         System.out.println("Essen bitte löschen");
-
-            }
-    @FXML
-    public void updateFoodById  (ActionEvent event) throws IOException {
-        System.out.println("Essen bitte ändern");
 
     }
 
+    @FXML
+    public void updateFoodById(ActionEvent event) throws IOException {
 
-
-
-
-
-
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("addFood-page.fxml"));
+        root = loader.load();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setTitle("Add Food Page");
+        stage.show();
+    }
 
 
 }
