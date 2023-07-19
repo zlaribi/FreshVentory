@@ -1,10 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.VBox?>
 
 <VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="780.0" prefWidth="360.0" spacing="10.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.iav.frontend.controller.MainPageController">
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="de.iav.frontend.controller.MainPageController"
-            prefHeight="400.0" prefWidth="600.0">
-</AnchorPane>
+   <padding>
+      <Insets bottom="40.0" left="40.0" right="40.0" top="10.0" />
+   </padding>
+   <children>
+      <Button mnemonicParsing="false" onAction="#addFoodButtonClick" text="New Food" />
+      <Button mnemonicParsing="false" onAction="#deleteFoodById" text="Delete Food" />
+      <Button mnemonicParsing="false" onAction="#checkDateClick" text="Check Date" />
+      <ListView fx:id="listAllFood" prefHeight="552.0" prefWidth="280.0" />
+      <Button mnemonicParsing="false" onAction="#updateFoodById" text="Edit Food" />
+   </children>
+</VBox>
