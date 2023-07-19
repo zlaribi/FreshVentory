@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -18,16 +19,14 @@ public class MainPageController {
     private Scene scene;
     private Parent root;
     private Stage stage;
-    private final FoodService foodService;
+    private final FoodService foodService = new FoodService();
+    private ListView<Food> listView;
 
     public void initialize() {
         List<Food> allFood = foodService.getFoodList();
-        listView.getItems()
-                .addAll(allFood);
+        listView.getItems().addAll(allFood);
 
-        listView.getSelectionModel()
-                .selectedItemProperty()
-                // Listener der etwas macht
+        listView.getSelectionModel().selectedItemProperty()
                 .addListener(
                         (observableValue, s, t1) -> {
                             text.setText(listView.getSelectionModel().getSelectedItem().firstName() + " " + listView.getSelectionModel().getSelectedItem().lastName());
