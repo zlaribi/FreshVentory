@@ -16,7 +16,7 @@ import java.util.List;
 public class FoodService {
     private final HttpClient httpClient;
     private final ObjectMapper objectMapper;
-    private final String FOOD_BASE_URL = "http://localhost:8080/api/foodventory";
+    private final String FOOD_BASE_URL = "http://localhost:8080/api/freshventory";
     private final String header_var = "application/json";
 
     public FoodService() {
@@ -34,36 +34,39 @@ public class FoodService {
                 .thenApply(this::mapToFood)
                 .join();
     }
+
     private Food mapToFood(String json) {
-        try{
+        try {
             return objectMapper.readValue(json, Food.class);
-        }catch (JsonProcessingException e){
-            throw new RuntimeException("Failed to open student!", e);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException("Failed to open food!", e);
         }
     }
-    public List<Food> getFoodList(String id){
+
+    public List<Food> getFoodList() {
         HttpRequest request = HttpRequest.newBuilder()
                 .GET()
-                .uri(URI.create(FOOD_BASE_URL + "/" + id))
+                .uri(URI.create(FOOD_BASE_URL + "/food"))
                 .build();
         return httpClient.sendAsync(request, HttpResponse.BodyHandlers.ofString())
                 .thenApply(HttpResponse::body)
                 .thenApply(this::mapToFoodList)
                 .join();
     }
+
     private List<Food> mapToFoodList(String json) {
         try{
             return objectMapper.readValue(json, new TypeReference<List<Food>>() {
             });
         }catch (JsonProcessingException e){
-            throw new RuntimeException("Failed to open student!", e);
+            throw new RuntimeException("Failed to open food!", e);
         }
     }
     public Food addFood(Food foodToAdd){
         try {
             String requestBody = objectMapper.writeValueAsString(foodToAdd);
             HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create(FOOD_BASE_URL + "/foods"))
+                    .uri(URI.create(FOOD_BASE_URL + "/food"))
                     .header("Content-Type", header_var)
                     .header("Accept", header_var)
                     .POST(HttpRequest.BodyPublishers.ofString(requestBody))

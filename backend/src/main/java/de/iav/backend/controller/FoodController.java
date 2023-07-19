@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/foodventory")
+@RequestMapping("/api/freshventory")
 public class FoodController {
 
     private final FoodService foodService;
@@ -17,11 +17,12 @@ public class FoodController {
         this.foodService = foodService;
     }
 
-    @GetMapping("/foods")
+    @GetMapping("/food")
     public List<Food> listAllFood(){
         return foodService.listAllFood();
     }
-    @PostMapping("/foods")
+
+    @PostMapping("/food")
     public Food addFood(@RequestBody Food foodToAdd){
         return foodService.addFood(foodToAdd);
     }
