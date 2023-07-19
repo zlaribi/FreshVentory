@@ -30,7 +30,8 @@ public class LoginController {
         // System.out.println("Email address is: " + emailField.getText());
         //System.out.println("Password is: " + passwordField.getText());
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/de/iav/frontend/fxml/main-scene.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/de/iav/frontend/fxml/main-scene-new.fxml"));
+        //FXMLLoader loader = new FXMLLoader(getClass().getResource("/de/iav/frontend/fxml/main-scene-old.fxml"));
         root = loader.load();
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);

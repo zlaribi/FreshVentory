@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="780.0" prefWidth="360.0" spacing="10.0"
+      xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="de.iav.frontend.controller.MainPageController">
+    <padding>
+        <Insets bottom="40.0" left="40.0" right="40.0" top="10.0"/>
+    </padding>
+    <children>
+        <HBox>
+            <children>
+                <Button mnemonicParsing="false" onAction="#switchToAddFoodScene" text="New Food"/>
+                <Button fx:id="deleteFoodById" mnemonicParsing="false" onAction="#deleteFoodById" text="Delete Food">
+                    <HBox.margin>
+                        <Insets left="22.0"/>
+                    </HBox.margin>
+                </Button>
+                <Button mnemonicParsing="false" onAction="#switchToCheckDateScene" text="Check Date">
+                    <HBox.margin>
+                        <Insets left="20.0"/>
+                    </HBox.margin>
+                </Button>
+            </children>
+            <VBox.margin>
+                <Insets top="20.0"/>
+            </VBox.margin>
+        </HBox>
+        <ListView fx:id="listAllFood" prefHeight="552.0" prefWidth="280.0">
+            <VBox.margin>
+                <Insets top="10.0"/>
+            </VBox.margin>
+        </ListView>
+        <Button fx:id="updateFoodButton" mnemonicParsing="false" onAction="#switchToUpdateFoodScene" text="Edit Food">
+            <VBox.margin>
+                <Insets top="10.0"/>
+            </VBox.margin>
+        </Button>
+    </children>
+</VBox>

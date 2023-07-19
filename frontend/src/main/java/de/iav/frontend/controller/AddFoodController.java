@@ -21,11 +21,10 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class AddFoodController implements Initializable {
+    private final FoodService foodService = FoodService.getInstance();
     private Scene scene;
     private Parent root;
     private Stage stage;
-
-    private final FoodService foodService = FoodService.getInstance();
     @FXML
     private Button backToMainSceneButton;
     @FXML
@@ -96,7 +95,7 @@ public class AddFoodController implements Initializable {
         FoodWithoutId newFood = new FoodWithoutId(nameOfFood.getText(), quantityChoiceBox.getValue(), categoryChoiceBox.getSelectionModel().getSelectedItem(), expirationDate.getValue());
         foodService.addFood(newFood);
         //saveButton.setOnAction(e -> switchToMainScene());
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/de/iav/frontend/fxml/main-scene.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/de/iav/frontend/fxml/main-scene-new.fxml"));
         root = loader.load();
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
@@ -141,7 +140,7 @@ public class AddFoodController implements Initializable {
 
     @FXML
     protected void switchToMainScene(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/de/iav/frontend/fxml/main-scene.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/de/iav/frontend/fxml/main-scene-old.fxml"));
         root = loader.load();
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);

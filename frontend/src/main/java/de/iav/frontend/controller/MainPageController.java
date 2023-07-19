@@ -10,9 +10,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.List;
 
 
@@ -22,7 +26,6 @@ public class MainPageController {
     private Stage stage;
     private final FoodService foodService = FoodService.getInstance();
 
-
     @FXML
     private ListView<Food> listAllFood;
     @FXML
@@ -30,38 +33,47 @@ public class MainPageController {
     @FXML
     private Button updateFoodButton;
 
+    @FXML
+    private TableView<Food> table;
+    @FXML
+    private TableColumn<Food, String> nameColumn;
+    @FXML
+    private TableColumn<Food, String> categoryColumn;
+    @FXML
+    private TableColumn<Food, String> quantityColumn;
+    @FXML
+    private TableColumn<Food, LocalDate> expirationDateColumn;
 
     public void initialize() {
 
-       /* List<Food> allFood = foodService.getFoodList();
+        List<Food> allFood = foodService.getFoodList();
 
-        // Sortiere die Liste nach dem LocalDate
-        Collections.sort(allFood, Comparator.comparing(Food::getExpirationDate));
+        //Clear existing items in t he TableView;
+        table.getItems().clear();
 
-        // Löschen der alten Elemente aus der Liste (falls nötig)
-        listAllFood.getItems().clear();
+        // Configure the TableColumns to use appropriate properties of the Food class
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        categoryColumn.setCellValueFactory(new PropertyValueFactory<>("category"));
+        quantityColumn.setCellValueFactory(new PropertyValueFactory<>("quantity"));
+        expirationDateColumn.setCellValueFactory(new PropertyValueFactory<>("expirationDate"));
 
-        // Hinzufügen der angepassten Anzeigetexte (ohne ID) zu listAllFood
-        for (Food food : allFood) {
-            listAllFood.getItems().add(food.name() + " - " + food.expirationDate() + " (Expires: " + food.getExpirationDate() + ")");
-        }
 
-        // Rest des Codes bleibt unverändert...
-        listAllFood.getSelectionModel().selectedItemProperty()
-                .addListener(
-                        (observableValue, s, t1) -> {
-                            if (t1 != null) {
-                                updateFoodButton.setDisable(false);
-                            } else {
-                                updateFoodButton.setDisable(true);
-                            }
-                            deleteFoodById.setDisable(false);
-                        }
-                );
+        // Add the sorted Food objects to the TableView
+        table.getItems().addAll(allFood);
+//
+//        // Listener for the TableView selection (if needed)
+//        table.getSelectionModel().selectedItemProperty()
+//                .addListener((observableValue, oldValue, newValue) -> {
+//                    if (newValue != null) {
+//                        updateFoodButton.setDisable(false);
+//                    } else {
+//                        updateFoodButton.setDisable(true);
+//                    }
+//                    deleteFoodById.setDisable(false);
+//                });
     }
-*/
 
-
+    /*
         List<Food> allFood = foodService.getFoodList();
         listAllFood.getItems().addAll(allFood);
         listAllFood.getSelectionModel().selectedItemProperty()
@@ -75,7 +87,7 @@ public class MainPageController {
                             deleteFoodById.setDisable(false);
                         }
                 );
-    }
+    }*/
 
     @FXML
     public void switchToAddFoodScene(ActionEvent event) throws IOException {

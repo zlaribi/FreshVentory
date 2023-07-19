@@ -16,12 +16,11 @@ import java.net.http.HttpResponse;
 import java.util.List;
 
 public class FoodService {
+    private static FoodService instance;
     private final HttpClient httpClient = HttpClient.newHttpClient();
     private final ObjectMapper objectMapper = new ObjectMapper();
     private final String FOOD_BASE_URL = "http://localhost:8080/api/freshventory";
     private final String header_var = "application/json";
-
-    private static FoodService instance;
 
 
     public FoodService() {
@@ -87,11 +86,12 @@ public class FoodService {
                     .thenApply(HttpResponse::body)
                     .thenApply(this::mapToFood)
                     .join();
-        }catch (JsonProcessingException e){
+        } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
     }
-    public Food updateFoodById(String id, Food foodToAdd){
+
+    public Food updateFoodById(String id, Food foodToAdd) {
         try {
             String requestBody = objectMapper.writeValueAsString(foodToAdd);
             HttpRequest request = HttpRequest.newBuilder()
@@ -104,26 +104,27 @@ public class FoodService {
                     .thenApply(HttpResponse::body)
                     .thenApply(this::mapToFood)
                     .join();
-        }catch (JsonProcessingException e){
+        } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
     }
-    public void deleteFoodById(String idToDelete, ListView<Food> listView){
-            HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create(FOOD_BASE_URL + "/" + idToDelete))
-                    .DELETE()
-                    .build();
-            httpClient.sendAsync(request, HttpResponse.BodyHandlers.ofString())
-                    .thenAccept(response -> {
-                        if (response.statusCode() == 200) {
-                            Platform.runLater(() -> {
-                                listView.getItems().removeIf(food -> food.foodId().equals(idToDelete));
-                                listView.refresh();
-                            });
-                        } else {
-                            throw new RuntimeException("Fehler beim Löschen des Lebensmittels mit der ID: " + idToDelete);
-                        }
-                    })
-                    .join();
+
+    public void deleteFoodById(String idToDelete, ListView<Food> listView) {
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(FOOD_BASE_URL + "/" + idToDelete))
+                .DELETE()
+                .build();
+        httpClient.sendAsync(request, HttpResponse.BodyHandlers.ofString())
+                .thenAccept(response -> {
+                    if (response.statusCode() == 200) {
+                        Platform.runLater(() -> {
+                            listView.getItems().removeIf(food -> food.foodId().equals(idToDelete));
+                            listView.refresh();
+                        });
+                    } else {
+                        throw new RuntimeException("Fehler beim Löschen des Lebensmittels mit der ID: " + idToDelete);
+                    }
+                })
+                .join();
     }
 }
