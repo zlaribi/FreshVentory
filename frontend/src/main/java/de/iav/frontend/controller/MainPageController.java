@@ -29,7 +29,7 @@ public class MainPageController {
         listView.getSelectionModel().selectedItemProperty()
                 .addListener(
                         (observableValue, s, t1) -> {
-                            text.setText(listView.getSelectionModel().getSelectedItem().firstName() + " " + listView.getSelectionModel().getSelectedItem().lastName());
+                            //text.setText(listView.getSelectionModel().getSelectedItem().firstName() + " " + listView.getSelectionModel().getSelectedItem().lastName());
                             editStudentButton.setDisable(false);
                             deleteStudentButton.setDisable(false);
                         }
