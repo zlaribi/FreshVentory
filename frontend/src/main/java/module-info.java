@@ -7,21 +7,17 @@ module de.iav.frontend {
     requires com.fasterxml.jackson.databind;
     requires com.fasterxml.jackson.datatype.jsr310;
 
-    opens de.iav.frontend.addfoodpage to javafx.fxml;
-    exports de.iav.frontend.addfoodpage;
+    exports de.iav.frontend;
+    opens de.iav.frontend to javafx.fxml;
 
-    opens de.iav.frontend.consumebeforepage to javafx.fxml;
-    exports de.iav.frontend.consumebeforepage;
+    opens de.iav.frontend.controller to javafx.fxml;
+    exports de.iav.frontend.controller;
 
-    opens de.iav.frontend.loginpage to javafx.fxml;
-    exports de.iav.frontend.loginpage;
+    opens de.iav.frontend.model to javafx.fxml;
+    exports de.iav.frontend.model;
 
-    opens de.iav.frontend.mainpage to javafx.fxml;
-    exports de.iav.frontend.mainpage;
-
-
-
-
+    opens de.iav.frontend.service to javafx.fxml;
+    exports de.iav.frontend.service;
 
 
 }

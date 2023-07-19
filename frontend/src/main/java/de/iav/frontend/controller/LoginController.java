@@ -1,4 +1,4 @@
-package de.iav.frontend.loginpage;
+package de.iav.frontend.controller;
 
 
 import javafx.fxml.FXML;
@@ -6,7 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
-public class LoginPageController {
+public class LoginController {
     @FXML
     public Button loginButton;
     @FXML
@@ -14,7 +14,7 @@ public class LoginPageController {
     @FXML
     private PasswordField passwordField;
 
-    public LoginPageController(){
+    public LoginController(){ //This is a controller
     }
 
     @FXML
