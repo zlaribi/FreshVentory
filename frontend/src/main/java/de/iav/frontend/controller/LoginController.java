@@ -23,3 +23,4 @@ public class LoginController {
         System.out.println("Password is: " + passwordField.getText());
     }
 }
+

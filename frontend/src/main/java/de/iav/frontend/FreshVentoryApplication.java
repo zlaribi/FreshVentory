@@ -5,11 +5,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-
 import java.io.IOException;
 
 public class FreshVentoryApplication extends Application {
-    @Override
+    private Stage stage;
+
+   /* @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(FreshVentoryApplication.class.getResource("/de/iav/frontend/fxml/login-page.fxml"));
 
@@ -17,9 +18,19 @@ public class FreshVentoryApplication extends Application {
         stage.setTitle("Login page");
         stage.setScene(scene);
         stage.show();
+    }*/
+
+    @Override
+    public void start(Stage stage) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(FreshVentoryApplication.class.getResource("/de/iav/frontend/fxml/addfood-page.fxml"));
+
+        Scene scene = new Scene(fxmlLoader.load(), 360, 780);
+        stage.setTitle("Add your food");
+        stage.setScene(scene);
+        stage.show();
     }
+
     public static void main(String[] args) {
         launch(args);
     }
-
 }
