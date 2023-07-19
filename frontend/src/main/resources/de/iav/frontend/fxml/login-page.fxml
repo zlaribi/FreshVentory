@@ -8,9 +8,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="780.0" prefWidth="360.0" spacing="10.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.iav.frontend.mainpage.MainPageController">
+<VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="780.0" prefWidth="360.0" spacing="10.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.iav.frontend.loginpage.LoginPageController">
     <children>
-        <Label fx:id="welcomeText" text="Welcome to FreshVentory!" textAlignment="CENTER">
+        <Label text="Welcome to FreshVentory!" textAlignment="CENTER">
             <font>
                 <Font name="System Bold" size="16.0" />
             </font>
@@ -19,10 +19,10 @@
          </VBox.margin>
         </Label>
         <Label text="Email" />
-        <TextField />
+        <TextField fx:id="emailField" />
         <Label text="Password" />
-        <PasswordField />
-        <Button onAction="#onHelloButtonClick" text="Login">
+        <PasswordField fx:id="passwordField" />
+        <Button fx:id="loginButton" onAction="#onLoginButtonClick" text="Login">
          <VBox.margin>
             <Insets top="20.0" />
          </VBox.margin></Button>

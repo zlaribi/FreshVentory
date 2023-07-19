@@ -8,7 +8,11 @@ public class MainPageController {
     private Label welcomeText;
 
     @FXML
-    protected void onHelloButtonClick() {
+    protected void onLoginButtonClick() {
         welcomeText.setText("Welcome to FreshVentory!");
     }
+
+    public MainPageController(){
+    }
+
 }
