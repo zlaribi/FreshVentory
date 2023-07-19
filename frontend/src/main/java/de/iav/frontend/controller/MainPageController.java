@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 
@@ -22,6 +23,12 @@ public class MainPageController {
     private final FoodService foodService = new FoodService();
     private ListView<Food> listView;
 
+    @FXML
+    private Button deleteFoodById;
+
+    @FXML
+    private Button updateFoodById;
+
     public void initialize() {
         List<Food> allFood = foodService.getFoodList();
         listView.getItems().addAll(allFood);
@@ -30,8 +37,8 @@ public class MainPageController {
                 .addListener(
                         (observableValue, s, t1) -> {
                             //text.setText(listView.getSelectionModel().getSelectedItem().firstName() + " " + listView.getSelectionModel().getSelectedItem().lastName());
-                            editStudentButton.setDisable(false);
-                            deleteStudentButton.setDisable(false);
+                            updateFoodById.setDisable(false);
+                            deleteFoodById.setDisable(false);
                         }
                 );
     }
@@ -39,7 +46,7 @@ public class MainPageController {
     @FXML
     public void switchToAddFoodScene(ActionEvent event) throws IOException {
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("addfood-scene.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/de/iav/frontend/fxml/addfood-scene.fxml"));
         root = loader.load();
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
@@ -50,24 +57,26 @@ public class MainPageController {
 
     @FXML
     public void switchToCheckDateScene(ActionEvent event) throws IOException {
+        System.out.println("check date");
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("ConsumeBeforeController-scene.fxml"));
+        /*FXMLLoader loader = new FXMLLoader(getClass().getResource("ConsumeBeforeController-scene.fxml"));
         root = loader.load();
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.setTitle("Consume Before");
         stage.show();
+    */
     }
 
     @FXML
     public void deleteFoodById(ActionEvent event) throws IOException {
-        System.out.println("Delete your food.");
+        foodService.deleteFoodById(listView.getSelectionModel().getSelectedItem().foodId(), listView);
     }
 
     @FXML
     public void updateFoodById(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("addfood-scene.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/de/iav/frontend/fxml/addfood-scene.fxml"));
         root = loader.load();
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
