@@ -1,5 +1,6 @@
 package de.iav.frontend.controller;
 
+import de.iav.frontend.service.FoodService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -8,6 +9,8 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -16,14 +19,26 @@ import java.util.ResourceBundle;
 
 public class AddFoodController implements Initializable {
 
+
     private Scene scene;
     private Parent root;
     private Stage stage;
+    private FoodService foodService;
 
     @FXML
     private ChoiceBox<String> categoryChoiceBox = new ChoiceBox<>();
     @FXML
     private ChoiceBox<String> quantityChoiceBox = new ChoiceBox<>();
+    @FXML
+    private TextField nameOfFood;
+    /*  @FXML
+      private ChoiceBox<String> categoryChoiceBox = new ChoiceBox<>();
+      @FXML
+      private ChoiceBox<String> quantityChoiceBox = new ChoiceBox<>();
+      */
+    @FXML
+    private DatePicker expirationDate;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -49,8 +64,13 @@ public class AddFoodController implements Initializable {
 
     @FXML
     protected void addFood() {
-        System.out.println(categoryChoiceBox.getValue()); //Test if we get values
+        // foodService.deleteFoodById(listAllFood.getSelectionModel().getSelectedItem().foodId(), listAllFood);
+        System.out.println(categoryChoiceBox.getValue());
         System.out.println(quantityChoiceBox.getValue());
+        System.out.println(nameOfFood.getText());
+        //Food foodService =
+
+
     }
 
     @FXML
