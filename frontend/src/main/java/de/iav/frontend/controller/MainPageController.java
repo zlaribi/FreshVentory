@@ -20,7 +20,7 @@ public class MainPageController {
     private Scene scene;
     private Parent root;
     private Stage stage;
-    private final FoodService foodService = new FoodService();
+    private final FoodService foodService = FoodService.getInstance();
 
 
     @FXML
@@ -28,7 +28,7 @@ public class MainPageController {
     @FXML
     private Button deleteFoodById;
     @FXML
-    private Button updateFoodById;
+    private Button updateFoodButton;
 
 
     public void initialize() {
@@ -38,8 +38,11 @@ public class MainPageController {
         listAllFood.getSelectionModel().selectedItemProperty()
                 .addListener(
                         (observableValue, s, t1) -> {
-                            //text.setText(listView.getSelectionModel().getSelectedItem().firstName() + " " + listView.getSelectionModel().getSelectedItem().lastName());
-                            updateFoodById.setDisable(false);
+                            if (t1 != null) {
+                                updateFoodButton.setDisable(false);
+                            } else {
+                                updateFoodButton.setDisable(true);
+                            }
                             deleteFoodById.setDisable(false);
                         }
                 );
@@ -76,15 +79,18 @@ public class MainPageController {
     }
 
     @FXML
-    public void updateFoodById(ActionEvent event) throws IOException {
+    public void switchToUpdateFoodScene(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/de/iav/frontend/fxml/addfood-scene.fxml"));
         root = loader.load();
+
+        Food foodToUpdate = listAllFood.getSelectionModel().getSelectedItem();
+        AddFoodController addFoodController = loader.getController();
+        addFoodController.updateFood(foodToUpdate);
+
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.setTitle("Add Food Page");
         stage.show();
     }
-
-
 }

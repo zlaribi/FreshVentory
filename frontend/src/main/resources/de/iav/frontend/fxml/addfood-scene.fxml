@@ -26,7 +26,7 @@
                 <Font size="14.0"/>
             </font>
         </Label>
-        <TextField/>
+        <TextField fx:id="nameOfFood"/>
         <Label text="Category">
             <VBox.margin>
                 <Insets top="15.0"/>
@@ -53,8 +53,8 @@
                 <Font size="14.0"/>
             </font>
         </Label>
-        <ChoiceBox prefWidth="150.0"/>
-        <Button prefHeight="25.0" prefWidth="83.0" text="Save">
+        <DatePicker fx:id="expirationDate"/>
+        <Button fx:id="saveButton" onAction="#saveNewFoodButton" prefHeight="25.0" prefWidth="83.0" text="Save">
             <VBox.margin>
                 <Insets left="100.0" top="90.0"/>
             </VBox.margin>

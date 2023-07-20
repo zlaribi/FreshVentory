@@ -14,11 +14,9 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class LoginController {
-
+    private Stage stage;
     private Scene scene;
     private Parent root;
-    private Stage stage;
-
 
     @FXML
     private Button loginButton;
@@ -26,9 +24,6 @@ public class LoginController {
     private TextField emailField;
     @FXML
     private PasswordField passwordField;
-
-    //public LoginController(){ //This is a controller
-    //}
 
     @FXML
     protected void switchToMainScene(ActionEvent event) throws IOException {
@@ -40,10 +35,9 @@ public class LoginController {
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
-        //stage.setTitle("Main Page");
-        //stage.show();
-
-
+        stage.setTitle("Main Page");
+        stage.show();
     }
 }
+
 
