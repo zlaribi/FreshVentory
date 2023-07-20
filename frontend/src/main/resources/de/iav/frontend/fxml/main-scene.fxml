@@ -9,9 +9,9 @@
    </padding>
    <children>
       <Button mnemonicParsing="false" onAction="#switchToAddFoodScene" text="New Food"/>
-      <Button mnemonicParsing="false" onAction="#deleteFoodById" text="Delete Food" />
-       <Button mnemonicParsing="false" onAction="#switchToCheckDateScene" text="Check Date"/>
-      <ListView fx:id="listAllFood" prefHeight="552.0" prefWidth="280.0" />
-      <Button mnemonicParsing="false" onAction="#updateFoodById" text="Edit Food" />
+      <Button fx:id="deleteFoodById" mnemonicParsing="false" onAction="#deleteFoodById" text="Delete Food"/>
+      <Button mnemonicParsing="false" onAction="#switchToCheckDateScene" text="Check Date"/>
+      <ListView fx:id="listAllFood" prefHeight="552.0" prefWidth="280.0"/>
+      <Button fx:id="updateFoodById" mnemonicParsing="false" onAction="#updateFoodById" text="Edit Food"/>
    </children>
 </VBox>

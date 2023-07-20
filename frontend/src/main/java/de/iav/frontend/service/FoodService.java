@@ -105,12 +105,12 @@ public class FoodService {
                     .build();
             httpClient.sendAsync(request, HttpResponse.BodyHandlers.ofString())
                     .thenAccept(response -> {
-                        if(response.statusCode() ==204) {
+                        if (response.statusCode() == 200) {
                             Platform.runLater(() -> {
                                 listView.getItems().removeIf(food -> food.foodId().equals(idToDelete));
                                 listView.refresh();
                             });
-                        }else{
+                        } else {
                             throw new RuntimeException("Fehler beim Löschen des Lebensmittels mit der ID: " + idToDelete);
                         }
                     })
