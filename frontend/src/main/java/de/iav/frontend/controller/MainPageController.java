@@ -13,7 +13,6 @@ import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.List;
 
 
 public class MainPageController {
@@ -21,6 +20,9 @@ public class MainPageController {
     private Parent root;
     private Stage stage;
     private final FoodService foodService = new FoodService();
+
+
+    @FXML
     private ListView<Food> listView;
 
     @FXML
@@ -30,7 +32,7 @@ public class MainPageController {
     private Button updateFoodById;
 
     public void initialize() {
-        List<Food> allFood = foodService.getFoodList();
+      /*  List<Food> allFood = foodService.getFoodList();
         listView.getItems().addAll(allFood);
 
         listView.getSelectionModel().selectedItemProperty()
@@ -40,12 +42,11 @@ public class MainPageController {
                             updateFoodById.setDisable(false);
                             deleteFoodById.setDisable(false);
                         }
-                );
+                );*/
     }
 
     @FXML
     public void switchToAddFoodScene(ActionEvent event) throws IOException {
-
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/de/iav/frontend/fxml/addfood-scene.fxml"));
         root = loader.load();
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
