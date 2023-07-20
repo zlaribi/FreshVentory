@@ -27,9 +27,11 @@ public class FoodService {
     public Optional<Food> getFoodById(String foodId){
         return foodRepository.findById(foodId);
     }
+
     public void deleteFoodById(String foodId){
         foodRepository.deleteById(foodId);
     }
+
     public Food updateFoodById(String id, Food foodToUpdate){
         Optional<Food> existingFood = foodRepository.findById(id);
         if (existingFood.isPresent()) {
@@ -38,5 +40,4 @@ public class FoodService {
         throw new NoSuchElementException("Element with ID: " + id + " not found!");
 
     }
-
 }

@@ -10,9 +10,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/freshventory")
 public class FoodController {
-
     private final FoodService foodService;
-
     public FoodController(FoodService foodService) {
         this.foodService = foodService;
     }

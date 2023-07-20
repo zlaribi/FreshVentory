@@ -85,6 +85,4 @@ public class MainPageController {
         stage.setTitle("Add Food Page");
         stage.show();
     }
-
-
 }

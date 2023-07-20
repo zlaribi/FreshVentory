@@ -1,13 +1,9 @@
-package de.iav.backend.model;
-
-import org.springframework.data.annotation.Id;
+package de.iav.frontend.model;
 
 import java.time.LocalDate;
 import java.util.List;
 
-public record Food(
-        @Id
-        String foodId,
+public record FoodWithoutID(
         String name,
         String quantity,
         List<String> category,
