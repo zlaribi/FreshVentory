@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="780.0" prefWidth="360.0" spacing="10.0"
+      xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="de.iav.frontend.controller.AddFoodController">
+    <children>
+        <Button onAction="#switchToMainScene" text="Back">
+            <VBox.margin>
+                <Insets top="25.0"/>
+            </VBox.margin>
+        </Button>
+        <Label text="Please add your food:" textAlignment="CENTER">
+            <font>
+                <Font name="System Bold" size="16.0"/>
+            </font>
+            <VBox.margin>
+                <Insets bottom="25.0" top="60.0"/>
+            </VBox.margin>
+        </Label>
+        <Label text="Food name:">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </Label>
+        <TextField/>
+        <Label text="Category">
+            <VBox.margin>
+                <Insets top="15.0"/>
+            </VBox.margin>
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </Label>
+        <ChoiceBox fx:id="categoryChoiceBox" prefWidth="150.0"/>
+        <Label text="Quantity">
+            <VBox.margin>
+                <Insets top="15.0"/>
+            </VBox.margin>
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </Label>
+        <ChoiceBox fx:id="quantityChoiceBox" prefWidth="150.0"/>
+        <Label text="Expiration date">
+            <VBox.margin>
+                <Insets top="15.0"/>
+            </VBox.margin>
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </Label>
+        <ChoiceBox prefWidth="150.0"/>
+        <Button prefHeight="25.0" prefWidth="83.0" text="Save">
+            <VBox.margin>
+                <Insets left="100.0" top="90.0"/>
+            </VBox.margin>
+        </Button>
+    </children>
+    <padding>
+        <Insets bottom="40.0" left="40.0" right="40.0" top="10.0"/>
+    </padding>
+</VBox>
