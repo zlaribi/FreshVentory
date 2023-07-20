@@ -3,6 +3,7 @@ package de.iav.frontend.service;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import de.iav.frontend.model.Food;
 import de.iav.frontend.model.FoodWithoutId;
 import javafx.application.Platform;
@@ -22,7 +23,9 @@ public class FoodService {
 
     private static FoodService instance;
 
-    private FoodService() {
+
+    public FoodService() {
+        objectMapper.registerModule(new JavaTimeModule());
     }
 
     public static synchronized FoodService getInstance() {
