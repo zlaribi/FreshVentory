@@ -13,6 +13,7 @@ import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.List;
 
 
 public class MainPageController {
@@ -23,26 +24,25 @@ public class MainPageController {
 
 
     @FXML
-    private ListView<Food> listView;
-
+    private ListView<Food> listAllFood;
     @FXML
     private Button deleteFoodById;
-
     @FXML
     private Button updateFoodById;
 
-    public void initialize() {
-      /*  List<Food> allFood = foodService.getFoodList();
-        listView.getItems().addAll(allFood);
 
-        listView.getSelectionModel().selectedItemProperty()
+    public void initialize() {
+        List<Food> allFood = foodService.getFoodList();
+        listAllFood.getItems().addAll(allFood);
+        System.out.println(listAllFood);
+        listAllFood.getSelectionModel().selectedItemProperty()
                 .addListener(
                         (observableValue, s, t1) -> {
                             //text.setText(listView.getSelectionModel().getSelectedItem().firstName() + " " + listView.getSelectionModel().getSelectedItem().lastName());
                             updateFoodById.setDisable(false);
                             deleteFoodById.setDisable(false);
                         }
-                );*/
+                );
     }
 
     @FXML
@@ -72,7 +72,7 @@ public class MainPageController {
 
     @FXML
     public void deleteFoodById(ActionEvent event) throws IOException {
-        foodService.deleteFoodById(listView.getSelectionModel().getSelectedItem().foodId(), listView);
+        foodService.deleteFoodById(listAllFood.getSelectionModel().getSelectedItem().foodId(), listAllFood);
     }
 
     @FXML
@@ -85,5 +85,6 @@ public class MainPageController {
         stage.setTitle("Add Food Page");
         stage.show();
     }
+
 
 }

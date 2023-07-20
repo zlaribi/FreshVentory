@@ -3,6 +3,7 @@ package de.iav.frontend.service;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import de.iav.frontend.model.Food;
 import javafx.application.Platform;
 import javafx.scene.control.ListView;
@@ -22,6 +23,7 @@ public class FoodService {
     public FoodService() {
         this.httpClient = HttpClient.newHttpClient();
         this.objectMapper = new ObjectMapper();
+        objectMapper.registerModule(new JavaTimeModule());
     }
 
     public Food getFoodById(String id){

@@ -48,6 +48,12 @@ public class AddFoodController implements Initializable {
     }
 
     @FXML
+    protected void addFood() {
+        System.out.println(categoryChoiceBox.getValue()); //Test if we get values
+        System.out.println(quantityChoiceBox.getValue());
+    }
+
+    @FXML
     protected void switchToMainScene(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/de/iav/frontend/fxml/main-scene.fxml"));
         root = loader.load();
