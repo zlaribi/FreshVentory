@@ -22,8 +22,6 @@ public class FoodService {
     private final String header_var = "application/json";
 
     private static FoodService instance;
-    private boolean update;
-
 
     public FoodService() {
         objectMapper.registerModule(new JavaTimeModule());
@@ -88,11 +86,12 @@ public class FoodService {
                     .thenApply(HttpResponse::body)
                     .thenApply(this::mapToFood)
                     .join();
-        }catch (JsonProcessingException e){
+        } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
     }
-    public Food updateFoodById(String id, Food foodToAdd){
+
+    public Food updateFoodById(String id, Food foodToAdd) {
         try {
             String requestBody = objectMapper.writeValueAsString(foodToAdd);
             HttpRequest request = HttpRequest.newBuilder()
@@ -105,7 +104,7 @@ public class FoodService {
                     .thenApply(HttpResponse::body)
                     .thenApply(this::mapToFood)
                     .join();
-        }catch (JsonProcessingException e){
+        } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
     }
@@ -122,7 +121,7 @@ public class FoodService {
                                 listView.refresh();
                             });
                         } else {
-                            throw new RuntimeException("Fehler beim Löschen des Lebensmittels mit der ID: " + idToDelete);
+                            throw new RuntimeException("Error while deleting food with ID: " + idToDelete);
                         }
                     })
                     .join();

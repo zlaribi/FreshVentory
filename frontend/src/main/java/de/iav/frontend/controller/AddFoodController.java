@@ -39,8 +39,10 @@ public class AddFoodController implements Initializable {
     private ChoiceBox<String> quantityChoiceBox = new ChoiceBox<>();
     @FXML
     private DatePicker expirationDate;
-    private String foodId;
+    @FXML
+    private Button saveButton;
 
+    private String foodId;
 
     private final SceneSwitchService sceneSwitchService = SceneSwitchService.getInstance();
 
@@ -78,6 +80,7 @@ public class AddFoodController implements Initializable {
         }
         return selectedIndex;
     }
+
     public int getIndexOfQuantityChoiceBoxItem(ChoiceBox<String> choiceBox, Food foodToUpdate) {
         // Find the index of the specified Food object in the ChoiceBox.
         int selectedIndex = -1; // Default value if the item is not found.
