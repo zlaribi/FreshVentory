@@ -32,9 +32,38 @@ public class MainPageController {
 
 
     public void initialize() {
+
+       /* List<Food> allFood = foodService.getFoodList();
+
+        // Sortiere die Liste nach dem LocalDate
+        Collections.sort(allFood, Comparator.comparing(Food::getExpirationDate));
+
+        // Löschen der alten Elemente aus der Liste (falls nötig)
+        listAllFood.getItems().clear();
+
+        // Hinzufügen der angepassten Anzeigetexte (ohne ID) zu listAllFood
+        for (Food food : allFood) {
+            listAllFood.getItems().add(food.name() + " - " + food.expirationDate() + " (Expires: " + food.getExpirationDate() + ")");
+        }
+
+        // Rest des Codes bleibt unverändert...
+        listAllFood.getSelectionModel().selectedItemProperty()
+                .addListener(
+                        (observableValue, s, t1) -> {
+                            if (t1 != null) {
+                                updateFoodButton.setDisable(false);
+                            } else {
+                                updateFoodButton.setDisable(true);
+                            }
+                            deleteFoodById.setDisable(false);
+                        }
+                );
+    }
+*/
+
+
         List<Food> allFood = foodService.getFoodList();
         listAllFood.getItems().addAll(allFood);
-        System.out.println(listAllFood);
         listAllFood.getSelectionModel().selectedItemProperty()
                 .addListener(
                         (observableValue, s, t1) -> {

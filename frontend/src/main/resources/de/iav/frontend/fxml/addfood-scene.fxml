@@ -54,11 +54,22 @@
             </font>
         </Label>
         <DatePicker fx:id="expirationDate"/>
-        <Button fx:id="saveButton" onAction="#saveNewFoodButton" prefHeight="25.0" prefWidth="83.0" text="Save">
-            <VBox.margin>
-                <Insets left="100.0" top="90.0"/>
-            </VBox.margin>
-        </Button>
+        <HBox prefHeight="100.0" prefWidth="200.0">
+            <children>
+                <Button fx:id="saveButton" onAction="#saveNewFoodButton" prefHeight="25.0" prefWidth="125.0"
+                        text="Save and Back">
+                    <HBox.margin>
+                        <Insets top="50.0"/>
+                    </HBox.margin>
+                </Button>
+                <Button fx:id="addMultiButton" onAction="#addMultiButton" prefHeight="25.0" prefWidth="118.0"
+                        text="Add multiple food">
+                    <HBox.margin>
+                        <Insets left="40.0" top="50.0"/>
+                    </HBox.margin>
+                </Button>
+            </children>
+        </HBox>
     </children>
     <padding>
         <Insets bottom="40.0" left="40.0" right="40.0" top="10.0"/>

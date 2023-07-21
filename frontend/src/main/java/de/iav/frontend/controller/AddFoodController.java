@@ -29,6 +29,8 @@ public class AddFoodController implements Initializable {
     @FXML
     private Button backToMainSceneButton;
     @FXML
+    private Button addMultiButton;
+    @FXML
     private TextField nameOfFood;
     @FXML
     private ChoiceBox<String> categoryChoiceBox = new ChoiceBox<>();
@@ -62,17 +64,50 @@ public class AddFoodController implements Initializable {
     }
 
     @FXML
-    protected void saveNewFoodButton() {
+    protected void saveNewFoodButton(ActionEvent event) throws IOException {
         FoodWithoutId newFood = new FoodWithoutId(nameOfFood.getText(), quantityChoiceBox.getValue(), categoryChoiceBox.getItems(), expirationDate.getValue());
+        // FoodWithoutId newFood = new FoodWithoutId(nameOfFood.getText(), quantityChoiceBox.getValue(), categoryChoiceBox.getSelectionModel().getSelectedItem(), expirationDate.getValue());
         foodService.addFood(newFood);
         //saveButton.setOnAction(e -> switchToMainScene());
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/de/iav/frontend/fxml/main-scene.fxml"));
+        root = loader.load();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+    }
+
+    @FXML
+    protected void addMultiButton() {
+        FoodWithoutId newFood = new FoodWithoutId(nameOfFood.getText(), quantityChoiceBox.getValue(), categoryChoiceBox.getItems(), expirationDate.getValue());
+
+//        FoodWithoutId newFood = new FoodWithoutId(nameOfFood.getText(), quantityChoiceBox.getValue(), categoryChoiceBox.getSelectionModel().getSelectedItem(), expirationDate.getValue());
+        foodService.addFood(newFood);
+        nameOfFood.clear();
+        quantityChoiceBox.setValue("");
+        categoryChoiceBox.setValue("");
+        expirationDate.getEditor().clear();
+
+
     }
 
     @FXML
     public void updateFood(Food foodToUpdate) {
         nameOfFood.setText(foodToUpdate.name());
-        categoryChoiceBox.getItems().add(foodToUpdate.category().toString());
-        quantityChoiceBox.getItems().add(foodToUpdate.quantity().toString());
+        //    foodToUpdate.category()
+//       Fruits
+//       Vegetables
+//       Meat
+//       Fish
+//       Beverage
+//       Eggs
+//       Milk products
+
+        categoryChoiceBox.getSelectionModel().select(getIndexOfCategoryChoiceBoxItem(categoryChoiceBox, foodToUpdate));
+        quantityChoiceBox.getSelectionModel().select(getIndexOfQuantityChoiceBoxItem(quantityChoiceBox, foodToUpdate));
+
+        //categoryChoiceBox.getSelectionModel().select();
+        //quantityChoiceBox.getItems().setAll(foodToUpdate.quantity().toString());
+
         expirationDate.setValue(foodToUpdate.expirationDate());
 
     }
