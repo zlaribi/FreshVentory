@@ -7,7 +7,7 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import de.iav.frontend.model.Food;
 import de.iav.frontend.model.FoodWithoutId;
 import javafx.application.Platform;
-import javafx.scene.control.ListView;
+import javafx.scene.control.TableView;
 
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -108,17 +108,18 @@ public class FoodService {
             throw new RuntimeException(e);
         }
     }
-    public void deleteFoodById(String idToDelete, ListView<Food> listView){
-            HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create(FOOD_BASE_URL + "/" + idToDelete))
-                    .DELETE()
-                    .build();
-            httpClient.sendAsync(request, HttpResponse.BodyHandlers.ofString())
-                    .thenAccept(response -> {
-                        if (response.statusCode() == 200) {
-                            Platform.runLater(() -> {
-                                listView.getItems().removeIf(food -> food.foodId().equals(idToDelete));
-                                listView.refresh();
+
+    public void deleteFoodById(String idToDelete, TableView<Food> listView) {
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(FOOD_BASE_URL + "/" + idToDelete))
+                .DELETE()
+                .build();
+        httpClient.sendAsync(request, HttpResponse.BodyHandlers.ofString())
+                .thenAccept(response -> {
+                    if (response.statusCode() == 200) {
+                        Platform.runLater(() -> {
+                            listView.getItems().removeIf(food -> food.foodId().equals(idToDelete));
+                            listView.refresh();
                             });
                         } else {
                             throw new RuntimeException("Error while deleting food with ID: " + idToDelete);

@@ -9,7 +9,6 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -26,8 +25,6 @@ public class MainPageController {
     private Stage stage;
     private final FoodService foodService = FoodService.getInstance();
 
-    @FXML
-    private ListView<Food> listAllFood;
     @FXML
     private Button deleteFoodById;
     @FXML
@@ -73,7 +70,7 @@ public class MainPageController {
 
     @FXML
     public void deleteFoodById(ActionEvent event) throws IOException {
-        foodService.deleteFoodById(listAllFood.getSelectionModel().getSelectedItem().foodId(), listAllFood);
+        foodService.deleteFoodById(table.getSelectionModel().getSelectedItem().foodId(), table);
     }
 
     @FXML
@@ -81,7 +78,7 @@ public class MainPageController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/de/iav/frontend/fxml/addfood-scene.fxml"));
         root = loader.load();
 
-        Food foodToUpdate = listAllFood.getSelectionModel().getSelectedItem();
+        Food foodToUpdate = table.getSelectionModel().getSelectedItem();
         AddFoodController addFoodController = loader.getController();
         addFoodController.setSelectedFood(foodToUpdate);
 
