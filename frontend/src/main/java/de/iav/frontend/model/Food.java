@@ -10,4 +10,20 @@ public record Food(
         //LocalDate in JSON "YYYY-MM-DD"
         LocalDate expirationDate
 ) {
+
+    public String getName() {
+        return this.name;
+    }
+
+    public String getQuantity() {
+        return this.quantity;
+    }
+
+    public String getCategory() {
+        return this.category;
+    }
+
+    public LocalDate getExpirationDate() {
+        return this.expirationDate;
+    }
 }
