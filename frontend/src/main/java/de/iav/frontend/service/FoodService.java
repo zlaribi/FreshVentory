@@ -22,6 +22,7 @@ public class FoodService {
     private final String header_var = "application/json";
 
     private static FoodService instance;
+    private boolean update;
 
 
     public FoodService() {

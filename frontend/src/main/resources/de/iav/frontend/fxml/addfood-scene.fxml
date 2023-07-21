@@ -55,20 +55,18 @@
         </Label>
         <DatePicker fx:id="expirationDate"/>
         <HBox prefHeight="100.0" prefWidth="200.0">
-            <children>
-                <Button fx:id="saveButton" onAction="#saveNewFoodButton" prefHeight="25.0" prefWidth="125.0"
-                        text="Save and Back">
-                    <HBox.margin>
-                        <Insets top="50.0"/>
-                    </HBox.margin>
-                </Button>
-                <Button fx:id="addMultiButton" onAction="#addMultiButton" prefHeight="25.0" prefWidth="118.0"
-                        text="Add multiple food">
-                    <HBox.margin>
-                        <Insets left="40.0" top="50.0"/>
-                    </HBox.margin>
-                </Button>
-            </children>
+            <Button fx:id="saveButton" onAction="#saveNewFoodButton" prefHeight="25.0" prefWidth="125.0"
+                    text="Save and Back">
+                <HBox.margin>
+                    <Insets top="50.0"/>
+                </HBox.margin>
+            </Button>
+            <Button fx:id="addMultiButton" onAction="#addMultiButton" prefHeight="25.0" prefWidth="118.0"
+                    text="Add multiple food">
+                <HBox.margin>
+                    <Insets left="40.0" top="50.0"/>
+                </HBox.margin>
+            </Button>
         </HBox>
     </children>
     <padding>

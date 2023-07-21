@@ -114,7 +114,7 @@ public class MainPageController {
 
         Food foodToUpdate = listAllFood.getSelectionModel().getSelectedItem();
         AddFoodController addFoodController = loader.getController();
-        addFoodController.updateFood(foodToUpdate);
+        addFoodController.setSelectedFood(foodToUpdate);
 
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
