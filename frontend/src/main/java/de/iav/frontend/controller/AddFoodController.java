@@ -78,7 +78,6 @@ public class AddFoodController implements Initializable {
         }
         return selectedIndex;
     }
-
     public int getIndexOfQuantityChoiceBoxItem(ChoiceBox<String> choiceBox, Food foodToUpdate) {
         // Find the index of the specified Food object in the ChoiceBox.
         int selectedIndex = -1; // Default value if the item is not found.
@@ -91,7 +90,6 @@ public class AddFoodController implements Initializable {
         }
         return selectedIndex;
     }
-
     @FXML
     public void saveNewFoodButton(ActionEvent event) throws IOException {
         if (foodId == null) {
@@ -107,21 +105,16 @@ public class AddFoodController implements Initializable {
             foodService.updateFoodById(foodId, foodData);
         }
         sceneSwitchService.saveNewFoodSwitchToMainScene(event);
-
-
     }
 
     @FXML
     protected void addMultiButton() {
-        //  FoodWithoutId newFood = new FoodWithoutId(nameOfFood.getText(), quantityChoiceBox.getValue(), categoryChoiceBox.getItems(), expirationDate.getValue());
-
         FoodWithoutId newFood = new FoodWithoutId(nameOfFood.getText(), quantityChoiceBox.getValue(), categoryChoiceBox.getSelectionModel().getSelectedItem(), expirationDate.getValue());
         foodService.addFood(newFood);
         nameOfFood.clear();
         quantityChoiceBox.setValue("");
         categoryChoiceBox.setValue("");
         expirationDate.getEditor().clear();
-
     }
 
     @FXML
@@ -131,20 +124,7 @@ public class AddFoodController implements Initializable {
         categoryChoiceBox.getSelectionModel().select(getIndexOfCategoryChoiceBoxItem(categoryChoiceBox, selectedFood));
         quantityChoiceBox.getSelectionModel().select(getIndexOfQuantityChoiceBoxItem(quantityChoiceBox, selectedFood));
         expirationDate.setValue(selectedFood.expirationDate());
-
     }
-    /*@FXML
-    public void updateFood(Food foodToUpdate) {
-        boolean update = true;
-        this.foodId = foodToUpdate.foodId();
-
-        //nameOfFood.setText(foodToUpdate.name());
-        //categoryChoiceBox.getSelectionModel().select(getIndexOfCategoryChoiceBoxItem(categoryChoiceBox, foodToUpdate));
-        //quantityChoiceBox.getSelectionModel().select(getIndexOfQuantityChoiceBoxItem(quantityChoiceBox, foodToUpdate));
-        //expirationDate.setValue(foodToUpdate.expirationDate());
-
-    }  */
-
     @FXML
     protected void switchToMainScene(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/de/iav/frontend/fxml/main-scene.fxml"));
@@ -153,5 +133,4 @@ public class AddFoodController implements Initializable {
         scene = new Scene(root);
         stage.setScene(scene);
     }
-
 }
