@@ -63,6 +63,33 @@ public class AddFoodController implements Initializable {
         quantityChoiceBox.getItems().add("10");
     }
 
+    public int getIndexOfCategoryChoiceBoxItem(ChoiceBox<String> choiceBox, Food foodToUpdate) {
+        // Find the index of the specified Food object in the ChoiceBox.
+        int selectedIndex = -1; // Default value if the item is not found.
+        for (int i = 0; i < choiceBox.getItems().size(); i++) {
+            String element = choiceBox.getItems().get(i);
+            if (element.equals(foodToUpdate.category().get(0))) {
+                selectedIndex = i;
+                break;
+            }
+        }
+        return selectedIndex;
+    }
+
+    public int getIndexOfQuantityChoiceBoxItem(ChoiceBox<String> choiceBox, Food foodToUpdate) {
+        // Find the index of the specified Food object in the ChoiceBox.
+        int selectedIndex = -1; // Default value if the item is not found.
+        for (int i = 0; i < choiceBox.getItems().size(); i++) {
+            String element = choiceBox.getItems().get(i);
+            if (element.equals(foodToUpdate.quantity())) {
+                selectedIndex = i;
+                break;
+            }
+        }
+        return selectedIndex;
+    }
+//
+
     @FXML
     protected void saveNewFoodButton(ActionEvent event) throws IOException {
         FoodWithoutId newFood = new FoodWithoutId(nameOfFood.getText(), quantityChoiceBox.getValue(), categoryChoiceBox.getItems(), expirationDate.getValue());
