@@ -5,6 +5,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import de.iav.frontend.model.Food;
+import de.iav.frontend.model.FoodWithoutId;
 import javafx.application.Platform;
 import javafx.scene.control.ListView;
 
@@ -15,18 +16,26 @@ import java.net.http.HttpResponse;
 import java.util.List;
 
 public class FoodService {
-    private final HttpClient httpClient;
-    private final ObjectMapper objectMapper;
+    private final HttpClient httpClient = HttpClient.newHttpClient();
+    private final ObjectMapper objectMapper = new ObjectMapper();
     private final String FOOD_BASE_URL = "http://localhost:8080/api/freshventory";
     private final String header_var = "application/json";
 
+    private static FoodService instance;
+
+
     public FoodService() {
-        this.httpClient = HttpClient.newHttpClient();
-        this.objectMapper = new ObjectMapper();
         objectMapper.registerModule(new JavaTimeModule());
     }
 
-    public Food getFoodById(String id){
+    public static synchronized FoodService getInstance() {
+        if (instance == null) {
+            instance = new FoodService();
+        }
+        return instance;
+    }
+
+    public Food getFoodById(String id) {
         HttpRequest request = HttpRequest.newBuilder()
                 .GET()
                 .uri(URI.create(FOOD_BASE_URL + "/" + id))
@@ -57,14 +66,15 @@ public class FoodService {
     }
 
     private List<Food> mapToFoodList(String json) {
-        try{
+        try {
             return objectMapper.readValue(json, new TypeReference<List<Food>>() {
             });
-        }catch (JsonProcessingException e){
+        } catch (JsonProcessingException e) {
             throw new RuntimeException("Failed to open food!", e);
         }
     }
-    public Food addFood(Food foodToAdd){
+
+    public Food addFood(FoodWithoutId foodToAdd) {
         try {
             String requestBody = objectMapper.writeValueAsString(foodToAdd);
             HttpRequest request = HttpRequest.newBuilder()
@@ -105,12 +115,12 @@ public class FoodService {
                     .build();
             httpClient.sendAsync(request, HttpResponse.BodyHandlers.ofString())
                     .thenAccept(response -> {
-                        if(response.statusCode() ==204) {
+                        if (response.statusCode() == 200) {
                             Platform.runLater(() -> {
                                 listView.getItems().removeIf(food -> food.foodId().equals(idToDelete));
                                 listView.refresh();
                             });
-                        }else{
+                        } else {
                             throw new RuntimeException("Fehler beim Löschen des Lebensmittels mit der ID: " + idToDelete);
                         }
                     })

@@ -2,8 +2,7 @@ package de.iav.frontend.model;
 
 import java.time.LocalDate;
 
-public record Food(
-        String foodId,
+public record FoodWithoutId(
         String name,
         String quantity,
         String category,
