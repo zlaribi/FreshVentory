@@ -68,7 +68,7 @@ public class AddFoodController implements Initializable {
         int selectedIndex = -1; // Default value if the item is not found.
         for (int i = 0; i < choiceBox.getItems().size(); i++) {
             String element = choiceBox.getItems().get(i);
-            if (element.equals(foodToUpdate.category().get(0))) {
+            if (element.equals(foodToUpdate.category())) {
                 selectedIndex = i;
                 break;
             }
@@ -92,8 +92,8 @@ public class AddFoodController implements Initializable {
 
     @FXML
     protected void saveNewFoodButton(ActionEvent event) throws IOException {
-        FoodWithoutId newFood = new FoodWithoutId(nameOfFood.getText(), quantityChoiceBox.getValue(), categoryChoiceBox.getItems(), expirationDate.getValue());
-        // FoodWithoutId newFood = new FoodWithoutId(nameOfFood.getText(), quantityChoiceBox.getValue(), categoryChoiceBox.getSelectionModel().getSelectedItem(), expirationDate.getValue());
+        // FoodWithoutId newFood = new FoodWithoutId(nameOfFood.getText(), quantityChoiceBox.getValue(), categoryChoiceBox.getItems(), expirationDate.getValue());
+        FoodWithoutId newFood = new FoodWithoutId(nameOfFood.getText(), quantityChoiceBox.getValue(), categoryChoiceBox.getSelectionModel().getSelectedItem(), expirationDate.getValue());
         foodService.addFood(newFood);
         //saveButton.setOnAction(e -> switchToMainScene());
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/de/iav/frontend/fxml/main-scene.fxml"));
@@ -105,9 +105,9 @@ public class AddFoodController implements Initializable {
 
     @FXML
     protected void addMultiButton() {
-        FoodWithoutId newFood = new FoodWithoutId(nameOfFood.getText(), quantityChoiceBox.getValue(), categoryChoiceBox.getItems(), expirationDate.getValue());
+        //  FoodWithoutId newFood = new FoodWithoutId(nameOfFood.getText(), quantityChoiceBox.getValue(), categoryChoiceBox.getItems(), expirationDate.getValue());
 
-//        FoodWithoutId newFood = new FoodWithoutId(nameOfFood.getText(), quantityChoiceBox.getValue(), categoryChoiceBox.getSelectionModel().getSelectedItem(), expirationDate.getValue());
+        FoodWithoutId newFood = new FoodWithoutId(nameOfFood.getText(), quantityChoiceBox.getValue(), categoryChoiceBox.getSelectionModel().getSelectedItem(), expirationDate.getValue());
         foodService.addFood(newFood);
         nameOfFood.clear();
         quantityChoiceBox.setValue("");
