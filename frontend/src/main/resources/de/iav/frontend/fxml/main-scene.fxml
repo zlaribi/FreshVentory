@@ -2,25 +2,52 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.layout.VBox?>
-<VBox fx:id="tableView" minHeight="-Infinity" minWidth="-Infinity" prefHeight="780.0" prefWidth="360.0" spacing="10.0"
-      xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="de.iav.frontend.controller.MainPageController">
-   <padding>
-      <Insets bottom="40.0" left="40.0" right="40.0" top="10.0"/>
-   </padding>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<AnchorPane prefHeight="1280.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/20.0.1"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.iav.frontend.controller.MainPageController">
    <children>
-      <Button mnemonicParsing="false" onAction="#switchToAddFoodScene" text="New Food"/>
-      <Button fx:id="deleteFoodById" mnemonicParsing="false" onAction="#deleteFoodById" text="Delete Food"/>
-      <Button mnemonicParsing="false" onAction="#switchToCheckDateScene" text="Check Date"/>
-      <TableView fx:id="table" prefHeight="522.0" prefWidth="280.0">
+      <HBox>
+         <children>
+            <Button mnemonicParsing="false" onAction="#switchToAddFoodScene" prefHeight="50.0" prefWidth="140.0"
+                    text="New food">
+               <HBox.margin>
+                  <Insets left="40.0"/>
+               </HBox.margin>
+               <font>
+                  <Font size="20.0"/>
+               </font>
+            </Button>
+            <Button fx:id="deleteFoodById" mnemonicParsing="false" onAction="#deleteFoodById" prefHeight="50.0"
+                    prefWidth="140.0" text="Delete food">
+               <HBox.margin>
+                  <Insets left="40.0"/>
+               </HBox.margin>
+               <font>
+                  <Font size="20.0"/>
+               </font>
+            </Button>
+         </children>
+         <padding>
+            <Insets top="20.0"/>
+         </padding>
+      </HBox>
+      <TableView fx:id="table" layoutY="36.0" mouseTransparent="true" opacity="0.7" prefHeight="1280.0"
+                 prefWidth="720.0" AnchorPane.bottomAnchor="130.0" AnchorPane.leftAnchor="5.0"
+                 AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="100.0">
          <columns>
-            <TableColumn fx:id="nameColumn" prefWidth="66.0" text="Name"/>
-            <TableColumn fx:id="categoryColumn" prefWidth="89.0" text="Category"/>
-            <TableColumn fx:id="quantityColumn" prefWidth="54.0" text="Quantity"/>
-            <TableColumn fx:id="expirationDateColumn" prefWidth="70.0" text="Date"/>
+            <TableColumn fx:id="nameColumn" maxWidth="500.0" minWidth="150.0" prefWidth="205.0" text="Name"/>
+            <TableColumn fx:id="categoryColumn" maxWidth="350.0" minWidth="100.0" prefWidth="205.0" text="Category"/>
+            <TableColumn fx:id="quantityColumn" maxWidth="350.0" minWidth="50.0" prefWidth="100.0" text="Quantity"/>
+            <TableColumn fx:id="expirationDateColumn" maxWidth="500.0" minWidth="200.0" prefWidth="200.0" text="Date"/>
          </columns>
       </TableView>
-      <Button fx:id="updateFoodButton" mnemonicParsing="false" onAction="#switchToUpdateFoodScene" text="Edit Food"/>
+      <Button fx:id="updateFoodButton" layoutY="568.0" mnemonicParsing="false" onAction="#switchToUpdateFoodScene"
+              prefHeight="50.0" prefWidth="140.0" text="Edit food" AnchorPane.bottomAnchor="40.0"
+              AnchorPane.leftAnchor="40.0">
+         <font>
+            <Font size="20.0"/>
+         </font>
+      </Button>
    </children>
-</VBox>
+</AnchorPane>
