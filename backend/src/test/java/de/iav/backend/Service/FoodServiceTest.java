@@ -1,4 +1,4 @@
-package de.iav.backend;
+package de.iav.backend.Service;
 
 import de.iav.backend.model.Food;
 import de.iav.backend.repository.FoodRepository;
@@ -17,7 +17,7 @@ public class FoodServiceTest {
     FoodService foodService = new FoodService(foodRepository);
 
     @Test
-    void getAllFood_whenFoodExist_theReturnFood() {
+    void getAllFood_whenFoodExist_thenReturnFood() {
         //GIVEN
         List<Food> expectedListOfFood = List.of(
                 new Food("5", "Zuccini", "2", "Vegetables", LocalDate.of(2022, 6, 2))
@@ -31,4 +31,13 @@ public class FoodServiceTest {
         verify(foodRepository).findAll();
     }
 
+    @Test
+    void addSingleFood_whenFoodIsAdded_thenReturnFood() {
+        //GIVEN
+        Food expectedFood = new Food("5", "Zuccini", "2", "Vegetables", LocalDate.of(2022, 6, 2));
+        //WHEN
+        foodService.addFood(expectedFood);
+        //THEN
+        verify(foodRepository).save(expectedFood);
+    }
 }
