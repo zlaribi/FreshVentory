@@ -4,17 +4,18 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="780.0" prefWidth="360.0" spacing="10.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.iav.frontend.controller.LoginController">
+<VBox prefHeight="720.0" prefWidth="1280.0" spacing="10.0" xmlns="http://javafx.com/javafx/20.0.1"
+      xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.iav.frontend.controller.LoginController">
     <children>
         <Label text="Welcome to FreshVentory!" textAlignment="CENTER">
             <font>
-                <Font name="System Bold" size="16.0" />
+                <Font name="System Bold" size="16.0"/>
             </font>
-         <VBox.margin>
-            <Insets bottom="25.0" top="25.0" />
-         </VBox.margin>
+            <VBox.margin>
+                <Insets bottom="25.0" top="25.0"/>
+            </VBox.margin>
         </Label>
-        <Label text="Email" />
+        <Label text="Email"/>
         <TextField fx:id="emailField" />
         <Label text="Password" />
         <PasswordField fx:id="passwordField" />

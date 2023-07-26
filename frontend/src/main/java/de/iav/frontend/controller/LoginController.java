@@ -33,7 +33,9 @@ public class LoginController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/de/iav/frontend/fxml/main-scene.fxml"));
         root = loader.load();
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
+        stage.setHeight(1280);
+        stage.setWidth(720);
+        scene = new Scene(root, 300, 600);
         stage.setScene(scene);
         stage.setTitle("Main Page");
         stage.show();
