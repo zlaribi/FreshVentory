@@ -1,10 +1,8 @@
 package de.iav.frontend.controller;
 
 import de.iav.frontend.security.AuthService;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -12,8 +10,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-
-import java.io.IOException;
 
 public class LoginController {
     private Stage stage;
@@ -27,23 +23,52 @@ public class LoginController {
     @FXML
     private PasswordField passwordInput;
     @FXML
-    private Label errorMessage;
+    private Label errorLabel;
 
     private final AuthService authService = AuthService.getInstance();
 
     @FXML
     protected void onLoginClick() {
+
         login();
+
     }
 
     @FXML
     private void login() {
-        /*if(authService.login(usernameInput.getText(), passwordInput.getText()){
+        if (authService.login(usernameInput.getText(), passwordInput.getText())) {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/de/iav/frontend/fxml/main-scene.fxml"));
+            Parent parent = null;
+            try {
+                parent = fxmlLoader.load();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
-        }*/
+            Scene scene = new Scene(parent);
+            Stage stage = (Stage) usernameInput.getScene().getWindow();
+            stage.setScene(scene);
+            stage.setTitle("Main Page");
+        } else {
+            errorLabel.setText(authService.getErrorMessage());
+        }
     }
 
+    @FXML
+    protected void onRegisterClick() {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/de/iav/frontend/fxml/register-scene.fxml"));
+        Parent parent = null;
+        try {
+            parent = fxmlLoader.load();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
+        Scene scene = new Scene(parent);
+        Stage stage = (Stage) usernameInput.getScene().getWindow();
+        stage.setScene(scene);
+    }
+    /*
     @FXML
     protected void switchToMainScene(ActionEvent event) throws IOException {
         // System.out.println("Email address is: " + emailField.getText());
@@ -57,6 +82,7 @@ public class LoginController {
         stage.setTitle("Main Page");
         stage.show();
     }
+     */
 }
 
 

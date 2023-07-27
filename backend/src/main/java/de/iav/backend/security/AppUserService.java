@@ -29,6 +29,14 @@ public class AppUserService implements UserDetailsService {
     }
 
     public AppUserResponse createUser(AppUserRequest appUserRequest) {
+        if (
+                appUserRepository.findByUsername(appUserRequest.username()).isPresent() ||
+                        appUserRepository.findByEmail(appUserRequest.email()).isPresent()
+        ) {
+            throw new UserAlreadyExistException("Username already exists");
+        }
+
+
         AppUser userToSave = new AppUser(
                 null,
                 appUserRequest.username(),

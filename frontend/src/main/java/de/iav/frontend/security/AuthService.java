@@ -7,6 +7,7 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.Base64;
 
 public class AuthService {
 
@@ -64,7 +65,12 @@ public class AuthService {
             var response = client.sendAsync(request, HttpResponse.BodyHandlers.ofString());
             int statusCode = response.join().statusCode();
 
-            return statusCode == 201;
+            if (statusCode == 201) {
+                return true;
+            } else {
+                setErrorMessage("Registration failed. Email or Username duplicate?");
+                return false;
+            }
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
 
@@ -72,6 +78,49 @@ public class AuthService {
 
 
     }
+
+    public boolean login(String username, String password) {
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(BACKEND_AUTH_URL + "/login"))
+                .POST(HttpRequest.BodyPublishers.ofString(""))
+                .header("Authorization", "Basic " + Base64.getEncoder().encodeToString((username + ":" + password).getBytes()))
+                .build();
+
+        var response = client.sendAsync(request, HttpResponse.BodyHandlers.ofString());
+        int statusCode = response.join().statusCode();
+
+        if (statusCode == 200) {
+            String responseCookie = response.join().headers().firstValue("Set-Cookie").orElseThrow();
+            String responseSessionId = responseCookie.substring(11, responseCookie.indexOf(";"));
+
+            setSessionId(responseSessionId);
+            setUsername(username);
+
+            return true;
+        } else {
+            setErrorMessage("Login failed. Wrong username or password?");
+            return false;
+        }
+    }
+
+    public boolean logout() {
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(BACKEND_AUTH_URL + "/logout"))
+                .POST(HttpRequest.BodyPublishers.ofString(""))
+                .header("Cookie", "JSESSIONID=" + sessionId)
+                .build();
+
+        var response = client.sendAsync(request, HttpResponse.BodyHandlers.ofString());
+        int statusCode = response.join().statusCode();
+
+        if (statusCode == 200) {
+            return true;
+        } else {
+            setErrorMessage("Logout failed");
+            return false;
+        }
+    }
+
 }
 
 
