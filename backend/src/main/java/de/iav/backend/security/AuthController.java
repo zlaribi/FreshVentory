@@ -12,7 +12,7 @@ import java.time.Instant;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api/auth")
+@RequestMapping("/api/freshventory/auth")
 @RequiredArgsConstructor
 public class AuthController {
     private final AppUserService appUserService;

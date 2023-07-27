@@ -29,9 +29,7 @@ public class LoginController {
 
     @FXML
     protected void onLoginClick() {
-
         login();
-
     }
 
     @FXML
