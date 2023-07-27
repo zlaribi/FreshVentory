@@ -38,7 +38,4 @@ public class FoodService {
         throw new NoSuchElementException("Element with ID: " + id + " not found!");
 
     }
-
-
-
 }
