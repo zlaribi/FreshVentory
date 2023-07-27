@@ -1,5 +1,6 @@
 package de.iav.frontend.controller;
 
+import de.iav.frontend.security.AuthService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -7,6 +8,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -21,9 +23,26 @@ public class LoginController {
     @FXML
     private Button loginButton;
     @FXML
-    private TextField emailField;
+    private TextField usernameInput;
     @FXML
-    private PasswordField passwordField;
+    private PasswordField passwordInput;
+    @FXML
+    private Label errorMessage;
+
+    private final AuthService authService = AuthService.getInstance();
+
+    @FXML
+    protected void onLoginClick() {
+        login();
+    }
+
+    @FXML
+    private void login() {
+        /*if(authService.login(usernameInput.getText(), passwordInput.getText()){
+
+        }*/
+    }
+
 
     @FXML
     protected void switchToMainScene(ActionEvent event) throws IOException {

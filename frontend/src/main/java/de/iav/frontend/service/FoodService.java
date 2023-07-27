@@ -18,7 +18,7 @@ import java.util.List;
 public class FoodService {
     private final HttpClient httpClient = HttpClient.newHttpClient();
     private final ObjectMapper objectMapper = new ObjectMapper();
-    private final String FOOD_BASE_URL = "http://localhost:8080/api/freshventory";
+    private final String FOOD_BASE_URL = "http://localhost:8080/api/freshventory"; //http://oxygen.capstone-project.de/api/freshventory
     private final String header_var = "application/json";
 
     private static FoodService instance;
