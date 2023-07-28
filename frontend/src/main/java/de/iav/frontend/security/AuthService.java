@@ -3,7 +3,6 @@ package de.iav.frontend.security;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import de.iav.frontend.exception.FailedToOpenRuntimeException;
-import lombok.Getter;
 
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -11,13 +10,11 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.Base64;
 
-@Getter
+
 public class AuthService {
 
     private String username;
-    @Getter
     private String sessionId;
-    @Getter
     private String errorMessage;
     private static AuthService instance;
     private final HttpClient client = HttpClient.newHttpClient();
@@ -47,6 +44,18 @@ public class AuthService {
         this.errorMessage = errorMessage;
     }
 
+    public String username() {
+        return username;
+    }
+
+    public String sessionId() {
+        return sessionId;
+    }
+
+    public String errorMessage() {
+        return errorMessage;
+    }
+
     public boolean registerAppUser(AppUserRequest appUserRequest) {
         try {
             String requestBody = objectMapper.writeValueAsString(appUserRequest);
@@ -62,7 +71,7 @@ public class AuthService {
             if (statusCode == 201) {
                 return true;
             } else {
-                setErrorMessage("Registration failed. Email or Username duplicate?");
+                setErrorMessage("Registration failed. /n Email or Username duplicate?");
                 return false;
             }
         } catch (JsonProcessingException e) {

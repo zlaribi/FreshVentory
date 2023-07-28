@@ -53,7 +53,7 @@ public class RegisterController {
             stage.setScene(scene);
 
         } else {
-            errorLabel.setText(authService.getErrorMessage());
+            errorLabel.setText(authService.errorMessage());
         }
     }
 }

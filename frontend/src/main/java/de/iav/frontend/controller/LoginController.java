@@ -48,7 +48,7 @@ public class LoginController {
             stage.setScene(scene);
             stage.setTitle("Main Page");
         } else {
-            errorLabel.setText(authService.getErrorMessage());
+            errorLabel.setText(authService.errorMessage());
         }
     }
 
