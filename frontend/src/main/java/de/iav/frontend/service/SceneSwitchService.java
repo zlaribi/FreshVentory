@@ -14,7 +14,6 @@ import java.io.IOException;
 public class SceneSwitchService {
     private static SceneSwitchService instance;
     private final ObjectMapper objectMapper = new ObjectMapper();
-    private boolean update;
 
 
     public SceneSwitchService() {
