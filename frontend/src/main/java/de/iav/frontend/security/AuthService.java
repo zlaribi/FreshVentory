@@ -2,6 +2,7 @@ package de.iav.frontend.security;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import de.iav.frontend.exception.FailedToOpenRuntimeException;
 import lombok.Getter;
 
 import java.net.URI;
@@ -16,6 +17,7 @@ public class AuthService {
     private String username;
     @Getter
     private String sessionId;
+    @Getter
     private String errorMessage;
     private static AuthService instance;
     private final HttpClient client = HttpClient.newHttpClient();
@@ -40,6 +42,7 @@ public class AuthService {
         this.sessionId = sessionId;
     }
 
+
     public void setErrorMessage(String errorMessage) {
         this.errorMessage = errorMessage;
     }
@@ -63,7 +66,7 @@ public class AuthService {
                 return false;
             }
         } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
+            throw new FailedToOpenRuntimeException("Registration not possible!");
 
         }
 
