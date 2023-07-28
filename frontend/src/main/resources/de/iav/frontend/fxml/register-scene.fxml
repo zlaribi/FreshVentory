@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.VBox?>
+<VBox alignment="CENTER" prefHeight="780.0" prefWidth="360.0" spacing="10.0" xmlns="http://javafx.com/javafx/20.0.1"
+      xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.iav.frontend.controller.RegisterController">
+    <children>
+        <Label text="Username"/>
+        <TextField fx:id="usernameInput"/>
+        <Label text="E-Mail"/>
+        <TextField fx:id="emailInput"/>
+        <Label text="Password"/>
+        <PasswordField fx:id="passwordInput"/>
+        <Button mnemonicParsing="false" onAction="#onRegisterClick" text="Register NOW!"/>
+        <Label fx:id="errorLabel"/>
+    </children>
+    <padding>
+        <Insets left="50.0" right="50.0"/>
+    </padding>
+</VBox>

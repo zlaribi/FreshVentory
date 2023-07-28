@@ -64,12 +64,7 @@ public class MainPageController {
     }
 
     @FXML
-    public void switchToCheckDateScene(ActionEvent event) throws IOException {
-        System.out.println("check date");
-    }
-
-    @FXML
-    public void deleteFoodById(ActionEvent event) throws IOException {
+    public void deleteFoodById(ActionEvent event) {
         foodService.deleteFoodById(table.getSelectionModel().getSelectedItem().foodId(), table);
     }
 
