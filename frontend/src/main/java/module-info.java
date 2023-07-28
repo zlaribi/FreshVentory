@@ -6,6 +6,7 @@ module de.iav.frontend {
     requires com.fasterxml.jackson.core;
     requires com.fasterxml.jackson.databind;
     requires com.fasterxml.jackson.datatype.jsr310;
+    requires lombok;
 
     exports de.iav.frontend;
     opens de.iav.frontend to javafx.fxml;

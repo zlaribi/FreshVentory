@@ -2,6 +2,7 @@ package de.iav.frontend.security;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.Getter;
 
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -9,13 +10,12 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.Base64;
 
+@Getter
 public class AuthService {
 
-    @lombok.Getter
     private String username;
-    @lombok.Getter
+    @Getter
     private String sessionId;
-    @lombok.Getter
     private String errorMessage;
     private static AuthService instance;
     private final HttpClient client = HttpClient.newHttpClient();
