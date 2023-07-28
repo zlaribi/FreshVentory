@@ -41,7 +41,7 @@ public class RegisterController {
         );
 
         if (authService.registerAppUser(appUserRequest)) {
-            FXMLLoader fxmlLoader = new FXMLLoader(FreshVentoryApplication.class.getResource("login-scene.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(FreshVentoryApplication.class.getResource("/de/iav/frontend/fxml/login-scene.fxml"));
             Parent root = null;
             try {
                 root = fxmlLoader.load();
