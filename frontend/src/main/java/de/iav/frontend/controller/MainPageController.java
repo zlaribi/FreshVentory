@@ -1,6 +1,8 @@
 package de.iav.frontend.controller;
 
+import de.iav.frontend.exception.CustomIOException;
 import de.iav.frontend.model.Food;
+import de.iav.frontend.security.AuthService;
 import de.iav.frontend.service.FoodService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -8,7 +10,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -25,10 +26,7 @@ public class MainPageController {
     private Stage stage;
     private final FoodService foodService = FoodService.getInstance();
 
-    @FXML
-    private Button deleteFoodById;
-    @FXML
-    private Button updateFoodButton;
+
     @FXML
     private TableView<Food> table;
     @FXML
@@ -39,6 +37,8 @@ public class MainPageController {
     private TableColumn<Food, String> quantityColumn;
     @FXML
     private TableColumn<Food, LocalDate> expirationDateColumn;
+
+    private final AuthService authService = AuthService.getInstance();
 
     public void initialize() {
         List<Food> allFood = foodService.getFoodList();
@@ -82,5 +82,20 @@ public class MainPageController {
         stage.setScene(scene);
         stage.setTitle("Add Food Page");
         stage.show();
+    }
+
+    @FXML
+    private void logout(ActionEvent event) {
+        authService.logout();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/de/iav/frontend/fxml/login-scene.fxml"));
+        Parent parent;
+        try {
+            parent = fxmlLoader.load();
+        } catch (Exception e) {
+            throw new CustomIOException(e.toString());
+        }
+        scene = new Scene(parent);
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
     }
 }

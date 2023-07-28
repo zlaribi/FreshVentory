@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <VBox fx:id="tableView" minHeight="-Infinity" minWidth="-Infinity" prefHeight="780.0" prefWidth="420.0" spacing="10.0"
       xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1"
@@ -10,8 +11,22 @@
       <Insets bottom="40.0" left="40.0" right="40.0" top="10.0"/>
    </padding>
    <children>
-      <Button mnemonicParsing="false" onAction="#switchToAddFoodScene" text="New Food"/>
-      <Button fx:id="deleteFoodById" mnemonicParsing="false" onAction="#deleteFoodById" text="Delete Food"/>
+      <HBox>
+         <children>
+            <Button mnemonicParsing="false" onAction="#switchToAddFoodScene" text="New Food"/>
+            <Button mnemonicParsing="false" onAction="#deleteFoodById" text="Delete Food">
+               <HBox.margin>
+                  <Insets left="50.0"/>
+               </HBox.margin>
+            </Button>
+            <Button fx:id="updateFoodButton" mnemonicParsing="false" onAction="#switchToUpdateFoodScene"
+                    text="Edit Food">
+               <HBox.margin>
+                  <Insets left="60.0"/>
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
       <TableView fx:id="table" prefHeight="595.0" prefWidth="280.0">
          <columns>
             <TableColumn fx:id="nameColumn" prefWidth="83.0" text="Name"/>
@@ -20,6 +35,6 @@
             <TableColumn fx:id="expirationDateColumn" prefWidth="102.0" text="Date"/>
          </columns>
       </TableView>
-      <Button fx:id="updateFoodButton" mnemonicParsing="false" onAction="#switchToUpdateFoodScene" text="Edit Food"/>
+      <Button mnemonicParsing="false" onAction="#logout" text="Logout"/>
    </children>
 </VBox>
