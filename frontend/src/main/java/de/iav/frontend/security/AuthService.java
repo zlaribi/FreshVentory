@@ -2,7 +2,7 @@ package de.iav.frontend.security;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import de.iav.frontend.exception.FailedToOpenRuntimeException;
+import de.iav.frontend.exception.CustomJsonProcessingException;
 
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -13,7 +13,6 @@ import java.util.Base64;
 
 public class AuthService {
 
-    private String username;
     private String sessionId;
     private String errorMessage;
     private static AuthService instance;
@@ -31,10 +30,6 @@ public class AuthService {
         return instance;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
     public void setSessionId(String sessionId) {
         this.sessionId = sessionId;
     }
@@ -42,10 +37,6 @@ public class AuthService {
 
     public void setErrorMessage(String errorMessage) {
         this.errorMessage = errorMessage;
-    }
-
-    public String username() {
-        return username;
     }
 
     public String sessionId() {
@@ -75,7 +66,7 @@ public class AuthService {
                 return false;
             }
         } catch (JsonProcessingException e) {
-            throw new FailedToOpenRuntimeException("Registration not possible!");
+            throw new CustomJsonProcessingException("Could not register user!", e);
 
         }
 
@@ -97,7 +88,6 @@ public class AuthService {
             String responseSessionId = responseCookie.substring(11, responseCookie.indexOf(";"));
 
             setSessionId(responseSessionId);
-            setUsername(username);
 
             return true;
         } else {

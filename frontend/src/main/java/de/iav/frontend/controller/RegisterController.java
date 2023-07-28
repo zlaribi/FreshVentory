@@ -1,6 +1,7 @@
 package de.iav.frontend.controller;
 
 import de.iav.frontend.FreshVentoryApplication;
+import de.iav.frontend.exception.CustomIOException;
 import de.iav.frontend.security.AppUserRequest;
 import de.iav.frontend.security.AuthService;
 import javafx.fxml.FXML;
@@ -45,7 +46,7 @@ public class RegisterController {
             try {
                 root = fxmlLoader.load();
             } catch (IOException e) {
-                throw new RuntimeException(e);
+                throw new CustomIOException(e.toString());
             }
 
             Scene scene = new Scene(root);
