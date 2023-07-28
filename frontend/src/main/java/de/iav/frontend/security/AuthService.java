@@ -11,13 +11,16 @@ import java.util.Base64;
 
 public class AuthService {
 
+    @lombok.Getter
     private String username;
+    @lombok.Getter
     private String sessionId;
+    @lombok.Getter
     private String errorMessage;
     private static AuthService instance;
     private final HttpClient client = HttpClient.newHttpClient();
     private final ObjectMapper objectMapper = new ObjectMapper();
-    private static final String BACKEND_AUTH_URL = "http://localhost:8080/api/freshventory";
+    private static final String BACKEND_AUTH_URL = "http://localhost:8080/api/auth";
 
     private AuthService() {
     }
@@ -29,24 +32,12 @@ public class AuthService {
         return instance;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
     public void setUsername(String username) {
         this.username = username;
     }
 
-    public String getSessionId() {
-        return sessionId;
-    }
-
     public void setSessionId(String sessionId) {
         this.sessionId = sessionId;
-    }
-
-    public String getErrorMessage() {
-        return errorMessage;
     }
 
     public void setErrorMessage(String errorMessage) {

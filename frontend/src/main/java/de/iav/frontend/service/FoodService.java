@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import de.iav.frontend.model.Food;
 import de.iav.frontend.model.FoodWithoutId;
+import de.iav.frontend.security.AuthService;
 import javafx.application.Platform;
 import javafx.scene.control.TableView;
 
@@ -35,7 +36,7 @@ public class FoodService {
     }
 
     public Food getFoodById(String id) {
-        HttpRequest request = HttpRequest.newBuilder()
+        HttpRequest request = HttpRequest.newBuilder().header("Cookie", "JSESSIONID=" + AuthService.getInstance().getSessionId())
                 .GET()
                 .uri(URI.create(FOOD_BASE_URL + "/" + id))
                 .build();
@@ -54,7 +55,7 @@ public class FoodService {
     }
 
     public List<Food> getFoodList() {
-        HttpRequest request = HttpRequest.newBuilder()
+        HttpRequest request = HttpRequest.newBuilder().header("Cookie", "JSESSIONID=" + AuthService.getInstance().getSessionId())
                 .GET()
                 .uri(URI.create(FOOD_BASE_URL + "/food"))
                 .build();
@@ -76,7 +77,7 @@ public class FoodService {
     public Food addFood(FoodWithoutId foodToAdd) {
         try {
             String requestBody = objectMapper.writeValueAsString(foodToAdd);
-            HttpRequest request = HttpRequest.newBuilder()
+            HttpRequest request = HttpRequest.newBuilder().header("Cookie", "JSESSIONID=" + AuthService.getInstance().getSessionId())
                     .uri(URI.create(FOOD_BASE_URL + "/food"))
                     .header("Content-Type", header_var)
                     .header("Accept", header_var)
@@ -94,7 +95,7 @@ public class FoodService {
     public Food updateFoodById(String id, Food foodToAdd) {
         try {
             String requestBody = objectMapper.writeValueAsString(foodToAdd);
-            HttpRequest request = HttpRequest.newBuilder()
+            HttpRequest request = HttpRequest.newBuilder().header("Cookie", "JSESSIONID=" + AuthService.getInstance().getSessionId())
                     .uri(URI.create(FOOD_BASE_URL + "/" + id))
                     .header("Content-Type", header_var)
                     .header("Accept", header_var)
@@ -110,7 +111,7 @@ public class FoodService {
     }
 
     public void deleteFoodById(String idToDelete, TableView<Food> listView) {
-        HttpRequest request = HttpRequest.newBuilder()
+        HttpRequest request = HttpRequest.newBuilder().header("Cookie", "JSESSIONID=" + AuthService.getInstance().getSessionId())
                 .uri(URI.create(FOOD_BASE_URL + "/" + idToDelete))
                 .DELETE()
                 .build();
